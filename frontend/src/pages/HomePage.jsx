@@ -11,8 +11,6 @@ const HomePage = () => {
     fetchProducts();
   }, [fetchProducts]);
 
-  console.log('products', products);
-
   return (
     <Container maxW="container.xl" py={12}>
       <VStack spacing={8}>

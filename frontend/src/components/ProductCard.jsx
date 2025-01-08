@@ -31,7 +31,7 @@ const ProductCard = ({ product }) => {
   const textColor = useColorModeValue('gray.600', 'gray.200');
   const bg = useColorModeValue('white', 'gray.800');
 
-  const { deleteProduct } = useProductStore();
+  const { deleteProduct, updateProduct } = useProductStore();
 
   const handleDeleteProduct = async (pid) => {
     const { success, message } = await deleteProduct(pid);
@@ -54,8 +54,25 @@ const ProductCard = ({ product }) => {
     }
   };
 
-  const handleUpdateProduct = () => {
-    console.log('update product');
+  const handleUpdateProduct = async (pid, updatedProduct) => {
+    const { success, message } = await updateProduct(pid, updatedProduct);
+    if (!success) {
+      toast({
+        title: 'Error',
+        description: message,
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: 'Success',
+        description: message,
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
   };
 
   return (
